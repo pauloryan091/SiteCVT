@@ -1,214 +1,367 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Convite 18 anos - Paulo Ryan</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: url('39956942.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite 18 anos - Paulo Ryan</title>
+<style>
+  /* ==================== Estilo Geral ==================== */
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('39956942.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+  }
 
-    header {
-      position: relative;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.7);
-      border-bottom: 5px solid #ff9800;
-    }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-    header img {
-      width: 120px;
-      display: block;
-      margin: 0 auto 10px;
-    }
+  /* ==================== Tela Splash ==================== */
+  #splash {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
 
-    .bandeira {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      width: 60px; /* menor tamanho */
-    }
+  #splash img {
+    width: 200px;
+    animation: fadeZoom 3s ease-in-out infinite;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      margin: 10px 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    }
+  @keyframes fadeZoom {
+    0% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0.5; transform: scale(0.9); }
+  }
 
-    .countdown {
-      font-size: 1.5rem;
-      margin: 20px 0;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 10px;
-      border-radius: 5px;
-    }
+  #conteudo {
+    display: none;
+    animation: fadeIn 1.5s ease-in forwards;
+  }
 
-    .local {
-      margin: 40px 0;
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
-    .local h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    }
+  /* ==================== Header ==================== */
+  header {
+    position: relative;
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 5px solid #ff9800;
+  }
 
-    .local img {
-      width: 250px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-    }
+  header img {
+    width: 120px;
+    max-width: 25%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+  }
 
-    .mensagem {
-      font-size: 1.2rem;
-      margin: 40px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-    }
+  .bandeira {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 60px;
+    max-width: 10%;
+    height: auto;
+  }
 
-    .btn {
-      display: inline-block;
-      margin: 20px;
-      padding: 15px 25px;
-      background: linear-gradient(45deg, #ff9800, #4caf50);
-      color: white;
-      font-weight: bold;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.3s;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-    }
+  h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
 
-    .btn:hover {
-      background: linear-gradient(45deg, #e68900, #43a047);
-      transform: scale(1.05);
-    }
+  /* ==================== Contagem Regressiva ==================== */
+  .countdown {
+    font-size: 2rem;
+    margin: 20px 0;
+    font-weight: bold;
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  }
 
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      background: rgba(0,0,0,0.6);
-      font-size: 0.9rem;
-      border-top: 5px solid #ff9800;
-    }
+  /* ==================== Navegação ==================== */
+  nav {
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
 
-    /* Media Queries para Responsividade */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
+  nav a {
+    color: #ff9800;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+    background: rgba(0,0,0,0.3);
+  }
 
-      .countdown {
-        font-size: 1.2rem;
-      }
+  nav a:hover {
+    color: #ffffff;
+    background: rgba(255,152,0,0.6);
+  }
 
-      .local img {
-        width: 200px;
-        height: 120px;
-      }
+  /* ==================== Carrossel ==================== */
+  .carrossel {
+    position: relative;
+    max-width: 90%;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.3);
+  }
 
-      .mensagem {
-        font-size: 1rem;
-        margin: 20px;
-      }
+  .slides {
+    display: flex;
+    transition: transform 1s ease-in-out;
+    width: 100%;
+  }
 
-      .btn {
-        padding: 10px 20px;
-        font-size: 1rem;
-      }
-    }
+  .slide {
+    flex: 0 0 33.33%; /* 3 imagens por vez em desktop */
+    opacity: 0.7;
+    padding: 3px;
+    transition: opacity 0.5s;
+  }
 
-    @media (max-width: 480px) {
-      header img {
-        width: 100px;
-      }
+  .slide img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 
-      h1 {
-        font-size: 1.8rem;
-      }
+  .slide.ativo {
+    opacity: 1;
+  }
 
-      .countdown {
-        font-size: 1rem;
-      }
+  /* ==================== Localização ==================== */
+  .local {
+    margin: 40px 10px;
+  }
 
-      .local img {
-        width: 150px;
-        height: 90px;
-      }
+  .local h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  }
 
-      .mensagem {
-        font-size: 0.9rem;
-        margin: 10px;
-      }
+  .local iframe {
+    width: 100%;
+    height: 400px;
+    border: 3px solid #ff9800;
+    border-radius: 10px;
+  }
 
-      .btn {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+  /* ==================== Mensagem ==================== */
+  .mensagem {
+    font-size: 1.2rem;
+    margin: 20px 10px;
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  }
+
+  /* ==================== Botões ==================== */
+  .btn {
+    display: inline-block;
+    margin: 15px 10px;
+    padding: 12px 20px;
+    background: linear-gradient(45deg,#ff9800,#4caf50);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  }
+
+  .btn:hover {
+    background: linear-gradient(45deg,#e68900,#43a047);
+    transform: scale(1.05);
+  }
+
+  /* ==================== Footer ==================== */
+  footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
+    font-size: 0.9rem;
+    border-top: 5px solid #ff9800;
+  }
+
+  /* ==================== Responsividade ==================== */
+  @media (max-width: 1024px) {
+    .slide { flex: 0 0 50%; }
+    .carrossel .slide img { height: 180px; }
+    h1 { font-size: 2rem; }
+    .countdown { font-size: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    nav { gap: 5px; }
+    .slide { flex: 0 0 50%; }
+    .carrossel .slide img { height: 150px; }
+    h1 { font-size: 1.8rem; }
+    .countdown { font-size: 1.3rem; }
+    .mensagem, .local { font-size: 1rem; padding: 15px; }
+  }
+
+  @media (max-width: 480px) {
+    .slide { flex: 0 0 100%; }
+    .carrossel .slide img { height: 120px; }
+    h1 { font-size: 1.5rem; }
+    .countdown { font-size: 1rem; }
+    .mensagem, .local { font-size: 0.9rem; padding: 10px; }
+    nav a { padding: 6px 10px; font-size: 0.9rem; }
+    header img { width: 80px; }
+    .bandeira { width: 40px; top: 10px; left: 10px; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" 
-       alt="Bandeira do Brasil" class="bandeira">
-  <img src="fish.png" alt="Tucunaré">
-  <h1> 18 anos do Paulo Ryan </h1>
+<!-- Splash -->
+<div id="splash">
+  <img src="fish.png" alt="Bandeira Brasil">
+</div>
+
+<!-- Conteúdo -->
+<div id="conteudo">
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" class="bandeira" alt="Bandeira do Brasil">
+    <img src="fish.png" alt="Tucunaré">
+    <h1>18 anos do Paulo Ryan</h1>
+  </header>
+
+  <nav>
+    <a href="#local">Local</a>
+    <a href="#mensagem">Mensagem</a>
+    <a href="camiseta.html" target="_blank">Modelo da Camiseta</a>
+    <a href="https://chat.whatsapp.com/FlCfLHUSMQZ46mA5jkgIJS" target="_blank">Entrar no Grupo</a>
+    <a href="https://www.bing.com/videos/riverview/relatedvideo?q=SERRA+DA+MESA" target="_blank">Saiba Mais</a>
+  </nav>
+
+  <div class="carrossel">
+    <div class="slides" id="slides">
+      <div class="slide ativo"><img src="serra1.jpg" alt="Serra da Mesa 1"></div>
+      <div class="slide"><img src="serra2.jpg" alt="Serra da Mesa 2"></div>
+      <div class="slide"><img src="serra3.jpg" alt="Pescaria"></div>
+      <div class="slide"><img src="maxresdefault.jpg" alt="Serra da Mesa 4"></div>
+      <div class="slide"><img src="R.jpg" alt="Serra da Mesa 5"></div>
+    </div>
+  </div>
+
   <p class="countdown" id="contador"></p>
-</header>
 
-<section class="local">
-  <h2>📍 Local: Serra da Mesa - GO</h2>
-  <img src="serra1.jpg" alt="Serra da Mesa 1">
-  <img src="serra2.jpg" alt="Serra da Mesa 2">
-  <img src="serra3.jpg" alt="Pescaria">
-</section>
+  <section class="local" id="local">
+    <h2>📍 Local: Serra da Mesa - GO</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d392540.8958029049!2d-48.12283163595229!3d-14.983599798367637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9331043f671a7bb1%3A0x2dfe7f23fddf2a7b!2sLago%20Serra%20da%20Mesa!5e0!3m2!1spt-BR!2sbr!4v1693130296111!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
 
-<section class="mensagem">
-  <p>
-    Este não é apenas mais um aniversário, é a celebração dos meus 18 anos: um marco de novas responsabilidades, sonhos e conquistas. 
-    Quero compartilhar esse momento especial com pessoas que fazem parte da minha vida. 
-    Vem comemorar comigo na beira do lago, cercado de boas energias e boas mentiras de pescaria! 🎣
-  </p>
-</section>
+  <section class="mensagem" id="mensagem">
+    <p>
+      Este não é apenas mais um aniversário, é a celebração dos meus 18 anos: um marco de novas responsabilidades, sonhos e conquistas. 
+      Quero compartilhar esse momento especial com pessoas que fazem parte da minha vida. 
+      Vem comemorar comigo na beira do lago, cercado de boas energias e boas mentiras de pescaria! 🎣
+    </p>
+  </section>
 
-<a href="https://www.bing.com/videos/riverview/relatedvideo?q=SERRA+DA+MESA&mid=617648853B03303222DB617648853B03303222DB&mcid=8F5CD86EF9EA45BBA827D3A516201DEF&FORM=VIRE" class="btn" target="_blank">Saiba Mais</a>
-<a href="https://chat.whatsapp.com/FlCfLHUSMQZ46mA5jkgIJS" class="btn" target="_blank">Entrar no Grupo</a>
-<a href="camiseta.html" class="btn" target="_blank">Modelo da Camiseta</a>
-
-<footer>
-  <p>© 2025 Paulo Ryan – Todos os direitos reservados.</p>
-</footer>
+  <footer>
+    <p>© 2025 Paulo Tomaz – Todos os direitos reservados.</p>
+  </footer>
+</div>
 
 <script>
-  // Contagem regressiva
+  // ==================== Splash ====================
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("splash").style.display = "none";
+      document.getElementById("conteudo").style.display = "block";
+    }, 3000);
+  });
+
+  // ==================== Contagem regressiva ====================
   const dataAlvo = new Date("Sep 25, 2025 00:00:00").getTime();
   const contador = document.getElementById("contador");
-
   setInterval(() => {
     const agora = new Date().getTime();
     const distancia = dataAlvo - agora;
 
     const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+    const horas = Math.floor((distancia % (1000*60*60*24)) / (1000*60*60));
+    const minutos = Math.floor((distancia % (1000*60*60)) / (1000*60));
+    const segundos = Math.floor((distancia % (1000*60)) / 1000);
 
     contador.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
   }, 1000);
+
+  // ==================== Carrossel ====================
+  let currentIndex = 0;
+  const slides = document.getElementById("slides");
+  const totalSlides = slides.children.length;
+
+  function getVisibleSlides() {
+    const width = window.innerWidth;
+    if(width <= 480) return 1;
+    if(width <= 768) return 2;
+    return 3;
+  }
+
+  function showSlide(index) {
+    const visibleSlides = getVisibleSlides();
+    const offset = -(index * (100 / visibleSlides));
+    slides.style.transform = `translateX(${offset}%)`;
+    Array.from(slides.children).forEach((slide, i) => {
+      slide.classList.toggle("ativo", i >= index && i < index + visibleSlides);
+    });
+  }
+
+  setInterval(() => {
+    const visibleSlides = getVisibleSlides();
+    currentIndex = (currentIndex + 1) % (totalSlides - visibleSlides + 1);
+    showSlide(currentIndex);
+  }, 3000);
+
+  window.addEventListener("resize", () => showSlide(currentIndex));
+
+  // ==================== Menu responsivo ====================
+  const menuBtn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menu');
+
+  if(menuBtn && menu){
+    menuBtn.addEventListener('click', () => {
+      const isHidden = menu.getAttribute('aria-hidden') === 'true';
+      menu.style.display = isHidden ? 'block' : 'none';
+      menu.setAttribute('aria-hidden', !isHidden);
+    });
+    menu.style.display = 'none';
+  }
+</script>
+
 </script>
 </body>
 </html>
